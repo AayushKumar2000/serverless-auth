@@ -102,8 +102,8 @@ triggers = {
   always_run = "${timestamp()}"
 }
   provisioner "local-exec" {
-    command = "echo REACT_APP_API_GATEWAY_URL=${module.apigateway_auth.api-deployment-url} > .env"
-     working_dir="D:\\React\\test-auth"
+    command = "echo REACT_APP_API_GATEWAY_URL=${module.apigateway_auth.api-deployment-url} > ./client/.env"
+    // working_dir="D:\\React\\test-auth"
 
   }
 }
