@@ -23,8 +23,8 @@ module "lambda_oauth" {
   filename = "./files/oauth2.zip"
   handler = "index.handler"
   environment_variable = {
-     clientID = "866376299020-r892qoobkoc9j8s1gfilgtdmijbq8d8n.apps.googleusercontent.com",
-     clientSecret = "YNnsZ5jV_yyvpJWrwe2dSrw9"
+     clientID = "xxxxx",
+     clientSecret = "xxxx"
      kms_KeyID = module.kms_key.kms_key_id
      db_name =  "auth-user2"
 	 
