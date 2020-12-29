@@ -30,14 +30,7 @@ resource "aws_api_gateway_method" "method" {
   "application/json" =  "Empty"
 }
 }
-# resource "aws_api_gateway_method_response" "response_200" {
-#   count =  length(var.api_resource_path)
-#
-#   rest_api_id = aws_api_gateway_rest_api.api_gateway.id
-#   resource_id = aws_api_gateway_resource.resource[count.index].id
-#   http_method             = aws_api_gateway_method.method[count.index].http_method
-#   status_code = "200"
-# }
+
 
 resource "aws_api_gateway_integration" "integration" {
 count =  length(var.api_resource_path)
@@ -76,7 +69,7 @@ module "cors" {
 
   api_id          = aws_api_gateway_rest_api.api_gateway.id
   api_resource_id = aws_api_gateway_resource.resource[count.index].id
-  allow_origin = "http://localhost:3000"
+  allow_origin = var.api_cors_origin
   allow_credentials = "true"
 
 }

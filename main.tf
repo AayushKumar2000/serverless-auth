@@ -23,18 +23,18 @@ module "lambda_oauth" {
   filename = "./files/oauth2.zip"
   handler = "index.handler"
   environment_variable = {
-     clientID = "866376299020-r892qoobkoc9j8s1gfilgtdmijbq8d8n.apps.googleusercontent.com",
-     clientSecret = "YNnsZ5jV_yyvpJWrwe2dSrw9"
+     clientID = var.clientID
+     clientSecret = var.clientSecret
      kms_KeyID = module.kms_key.kms_key_id
      db_name =  "auth-user2"
-	 
-	 origin = "http://localhost:3000"
-	 
+
+	 origin = var.origin
+
 	 # after google authentication user redirect
-	 redirect_url = "http://localhost:3000"
-	 
+	 redirect_url = var.redirect_url
+
 	  # time in minutes
-	 jwt_expire = 5
+	 jwt_expire = var.jwt_expire
   }
  kms_key_arn = module.kms_key.kms_key_arn
 }
@@ -75,6 +75,7 @@ module "apigateway_auth" {
   api_integration_type = ["AWS_PROXY","AWS_PROXY"]
   lambda_function_name = ["oauth2","test-lambda2"]
   integration_uri = [module.lambda_oauth.lambda_invoke_arn,module.lambda_test-lambda.lambda_invoke_arn]
+  api_cors_origin = var.origin
   enable_authorizer = [false,true]
   authorizer_name = "test-authorizer"
   lambda_authorizer-invoke_arn =  module.lambda_authorizer.lambda_invoke_arn

@@ -83,3 +83,7 @@ variable "api_new_stage" {
   type = string
   default = null
 }
+
+variable "api_cors_origin" {
+  type = string
+}
