@@ -10,6 +10,17 @@ const instance = axios.create({
 })
 
 
+instance.interceptors.response.use((response) => {
+  return response
+}, (error) => {
+  if (error.response && error.response.status === 403 && error.response.data.redirect == '/' ) {
+    window.location = '/'
+  } else {
+    return Promise.reject(error)
+  }
+})
+
+
 instance.interceptors.response.use(
   res => res,
   err => {
