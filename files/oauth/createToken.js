@@ -9,7 +9,7 @@ async function sign(headers, payload, key_arn) {
 
     payload.iat = Math.floor(Date.now() / 1000);
 
-    payload.exp = payload.iat + (2 * 60)
+    payload.exp = payload.iat + ( process.env.jwt_expire * 60)
 
     let token_components = {
         header: base64url(JSON.stringify(headers)),
@@ -44,7 +44,7 @@ const create = async (username,fid) =>{
       
     var payload = {
      username,
-     iss:"aws-apiGateway-fileSharing200",
+     iss:"apiGateway-serverless-auth",
      fingerprintID:fid
  }
  

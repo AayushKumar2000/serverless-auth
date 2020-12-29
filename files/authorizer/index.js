@@ -59,7 +59,7 @@ console.log("jwt-token "+TokenArray[1]);
       var key = (data.PublicKey).toString('base64');
        key = '\n-----BEGIN PUBLIC KEY-----\n'+key+'\n-----END PUBLIC KEY-----';
        console.log(key)
-        jwt.verify(TokenArray[1],key, { algorithms: ['RS256'] , issuer: 'aws-apiGateway-fileSharing200', fingerprintID: fid}, function (err, payload) {
+        jwt.verify(TokenArray[1],key, { algorithms: ['RS256'] , issuer: "apiGateway-serverless-auth", fingerprintID: fid}, function (err, payload) {
 	  if(err){
         console.log("e2"+err)
       // callback(null, generatePolicy('Deny',event.methodArn));

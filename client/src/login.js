@@ -29,9 +29,9 @@ function Login() {
 
     const data={email,password};
     instance.post(`${process.env.REACT_APP_API_GATEWAY_URL}/username_password-login`,data).then((response)=>{
-      if(response.data.err == 'user not found')
+      if(response.data&&response.data.err == 'user not found')
        setErr('user_not_found')
-      if(response.data.err == 'password does not match')
+      if(response.data&&response.data.err == 'password does not match')
        setErr('password_does_not_match')
     });
   }

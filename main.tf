@@ -27,6 +27,14 @@ module "lambda_oauth" {
      clientSecret = "YNnsZ5jV_yyvpJWrwe2dSrw9"
      kms_KeyID = module.kms_key.kms_key_id
      db_name =  "auth-user2"
+	 
+	 origin = "http://localhost:3000"
+	 
+	 # after google authentication user redirect
+	 redirect_url = "http://localhost:3000"
+	 
+	  # time in minutes
+	 jwt_expire = 5
   }
  kms_key_arn = module.kms_key.kms_key_arn
 }

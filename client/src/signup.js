@@ -33,7 +33,7 @@ const handleSubmit=(event)=>{
 
   const data={username,email,password};
   instance.post(`${process.env.REACT_APP_API_GATEWAY_URL}/username_password-signup`,data).then((response)=>{
-    if(response.data.err == 'user already exist')
+    if(response.data && response.data.err == 'user already exist')
      setErr('user_already_exist')
 
   });

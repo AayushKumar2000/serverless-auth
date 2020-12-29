@@ -14,7 +14,7 @@ instance.interceptors.response.use(
   res => res,
   err => {
    console.log(err)
-    if ( err.response && err.response.status === 401  && err.response.data.message == 'err:access-token-not-found') {
+    if ( err.response && err.response.status === 401  && err.response.data.message == 'Unauthorized') {
 		console.log(401)
     console.log(err.response)
 
@@ -47,7 +47,7 @@ instance.interceptors.response.use(
 
 
 axiosRetry(instance, {retries: 3,shouldResetTimeout: true, retryCondition	: (error)=>{
-	return error.response && error.response.status === 401 && error.response.data.message == 'err:access-token-not-found'  ;
+	return error.response && error.response.status === 401 && error.response.data.message == 'Unauthorized'  ;
 
 
 }, retryDelay: (retryCount: 5) => {

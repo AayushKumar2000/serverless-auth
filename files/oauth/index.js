@@ -13,7 +13,7 @@ const randomString = require('./randomString');
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: `${process.env.origin}`,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 200,
@@ -58,7 +58,7 @@ app.get('/auth/google/callback',
        console.log(err, err.stack); // an error occurred
         else{
         console.log(data)
-        res.redirect('http://localhost:3000')
+        res.redirect(`${process.env.redirect_url}`)
       }})
      
      
@@ -185,7 +185,7 @@ app.get('/auth/google/callback',
  
         res.cookie('refresh-token',"", {maxAge: 0});
         res.cookie('uid',"", {maxAge: 0});
-        res.redirect('http://localhost:3000/login');
+        res.redirect(`${process.env.origin}/login`);
       }})
     
    }else
@@ -197,14 +197,14 @@ app.get('/auth/google/callback',
   if(flag){
   res.cookie('refresh-token',"", {maxAge: 0});
   
-  res.redirect('http://localhost:3000/login')
+  res.redirect(`${process.env.origin}/login`)
   
   }
   
  })
  
  app.get('/redirect',(req,res)=>{
-  res.redirect('http://localhost:3000/login');
+  res.redirect(`${process.env.origin}/login`);
  })
 
 
