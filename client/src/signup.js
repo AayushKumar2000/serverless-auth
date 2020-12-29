@@ -6,16 +6,6 @@ import React,{useState} from 'react';
 const api_url= `${process.env.REACT_APP_API_GATEWAY_URL}`;
 
 
-instance.interceptors.response.use((response) => {
-  return response
-}, (error) => {
-  if (error.response && error.response.status === 403 && error.response.data.redirect == '/' ) {
-
-    window.location = '/'
-  } else {
-    return Promise.reject(error)
-  }
-})
 
 function SignUp() {
 
